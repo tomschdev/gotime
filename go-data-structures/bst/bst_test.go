@@ -15,6 +15,7 @@ func fillTree(bst *ItemBinarySearchTree) {
 	bst.Insert(3, "3")
 }
 func TestInsert(t *testing.T) {
+	t.Log("---TestInsert---")
 	fillTree(&bst)
 	bst.ToString()
 	bst.Insert(9, "9")
