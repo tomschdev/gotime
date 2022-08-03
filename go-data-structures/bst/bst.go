@@ -94,8 +94,8 @@ func (bst *ItemBinarySearchTree) PreOrderTraverse(f func(Item)) {
 func preOrderTraverse(n *Node, f func(Item)) {
 	if n != nil {
 		f(n.value)
-		inOrderTraverse(n.left, f)
-		inOrderTraverse(n.right, f)
+		preOrderTraverse(n.left, f)
+		preOrderTraverse(n.right, f)
 	}
 }
 
@@ -107,8 +107,8 @@ func (bst *ItemBinarySearchTree) PostOrderTraverse(f func(Item)) {
 
 func postOrderTraverse(n *Node, f func(Item)) {
 	if n != nil {
-		inOrderTraverse(n.left, f)
-		inOrderTraverse(n.right, f)
+		postOrderTraverse(n.left, f)
+		postOrderTraverse(n.right, f)
 		f(n.value)
 	}
 }
@@ -131,7 +131,7 @@ func (bst *ItemBinarySearchTree) Min() *Item {
 
 // returns max value in tree, nil if empty
 func (bst *ItemBinarySearchTree) Max() *Item {
-	bst.lock.Lock()
+	bst.lock.RLock()
 	defer bst.lock.RUnlock()
 	n := bst.root
 	if n == nil {
